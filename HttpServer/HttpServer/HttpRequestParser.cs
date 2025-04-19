@@ -11,7 +11,6 @@ namespace HttpServer
     {
         //Need to find a way to listen for http requests
 
-
         //Receive http request from browser
         //Setup server
         //Need an ip address that the browser can use to send requests. could be localhost
@@ -19,9 +18,6 @@ namespace HttpServer
         //Ip address method
 
         //Http parser method
-
-        //i need to create functionality that listens for http requests
-        //Need to open a port
 
         //Use Httpclient if httplistener does not work well.
 
@@ -42,6 +38,7 @@ namespace HttpServer
             }
             //Have to run program as admin or i get access denied error. use the links below to fix this issue
             //https://learn.microsoft.com/en-us/dotnet/framework/wcf/feature-details/configuring-http-and-https?redirectedfrom=MSDN
+            //https://stackoverflow.com/questions/4019466/httplistener-access-denied/4115328#4115328
 
             httpListener.Start();
             Console.WriteLine("Listening...");

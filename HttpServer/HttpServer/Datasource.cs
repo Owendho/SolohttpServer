@@ -20,16 +20,17 @@ namespace HttpServer
 
         //What type of content do i want to serve? Lets go with the geogia tech project
 
+        //Create unit for this method that checks whether the select statement is valid
         public static void ReadBook()
         {
-            string connectionString = "Server=localhost\\SQLEXPRESS;Database=master;Trusted_Connection=True;";
+            string connectionString = "Server=localhost\\SQLEXPRESS;Database=master;Trusted_Connection=True;TrustServerCertificate=True;";
+            //https://stackoverflow.com/questions/17615260/the-certificate-chain-was-issued-by-an-authority-that-is-not-trusted-when-conn
 
             int ISBN = 0;
-            string fName = " ";
-            string lName = " ";
+            string bookName = " ";
 
             //TODO: change this to a prepared statement later
-            string querySring = "SELECT ISBN, BookName FROM Book;";
+            string querySring = "USE GeorgiaTechLibrary; SELECT BookName, ISBN FROM Books;";
 
             using (SqlConnection connection = new SqlConnection(connectionString))
             {
@@ -41,12 +42,12 @@ namespace HttpServer
                 // Call Read before accessing data.
                 while (reader.Read())
                 {
-                    //Store table in objects
+                    //Store table in objecWin32Exception: The certificate chain was issued by an ts
                     Console.WriteLine(reader.GetString(0));
+                    bookName = reader.GetString(0);
                     ISBN = reader.GetInt32(1);
-                    fName = reader.GetString(2);
-                    lName = reader.GetString(3);
                     
+                    Console.WriteLine(bookName + ISBN);
                 }
 
                 reader.Close();

@@ -8,11 +8,12 @@ namespace HttpServer.DataSourceObjects
 {
     public class Book
     {
-        public string Name { get; set; }
+        public string BookName { get; set; }
         public int ISBN { get; set; }
 
-        public Book() {
-            
+        public Book(string bookName, int isbn) {
+            BookName = bookName;
+            ISBN = isbn;
         }
 
     }

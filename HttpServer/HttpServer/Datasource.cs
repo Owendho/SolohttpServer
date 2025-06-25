@@ -5,6 +5,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Microsoft.Data.SqlClient;
+using System.IO;
+using System.Linq;
+using System.Text.RegularExpressions;
 
 namespace HttpServer
 {
@@ -23,7 +26,8 @@ namespace HttpServer
         //Create unit test for this method that checks whether the select statement is valid
         public static void ReadBook()
         {
-            string connectionString = "Server=localhost\\SQLEXPRESS;Database=master;Trusted_Connection=True;TrustServerCertificate=True;";
+            //Store connectionString in local Appsettings.json.
+            string connectionString = " ";
             //https://stackoverflow.com/questions/17615260/the-certificate-chain-was-issued-by-an-authority-that-is-not-trusted-when-conn
 
             int ISBN = 0;
@@ -53,6 +57,23 @@ namespace HttpServer
                 reader.Close();
             }
 
+        }
+
+        public string readAppsettings()
+        {
+            string fileText = File.ReadAllText("Appsettings.json"); //TODO: Implement relative path. Currently searches SolohttpServer\HttpServer\HttpServer\bin\Debug\net8.0
+            string regexString = @"/([A-Z])\w+/g";
+
+            Regex regex = new Regex(regexString);
+
+            Match match = regex.Match(fileText);
+
+            string connectionString = " ";
+
+            match.Value.Trim();
+
+            //return connectionString;
+            return match.Value.Trim();
         }
     }
 }

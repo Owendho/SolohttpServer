@@ -20,7 +20,7 @@ namespace HttpServer
 
         //What type of content do i want to serve? Lets go with the geogia tech project
 
-        //Create unit for this method that checks whether the select statement is valid
+        //Create unit test for this method that checks whether the select statement is valid
         public static void ReadBook()
         {
             string connectionString = "Server=localhost\\SQLEXPRESS;Database=master;Trusted_Connection=True;TrustServerCertificate=True;";

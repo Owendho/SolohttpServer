@@ -69,11 +69,12 @@ namespace HttpServer
             Match match = regex.Match(fileText);
 
             string connectionString = " ";
+            Console.WriteLine(match.Value);
 
-            match.Value.Trim();
+            //match.Value.Trim();
 
             //return connectionString;
-            return match.Value.Trim();
+            return match.Value;
         }
     }
 }

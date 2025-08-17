@@ -7,7 +7,7 @@ using System.Net;
 
 namespace HttpServer
 {
-    class HttpRequestParser
+    public class HttpRequestParser
     {
         //Need to find a way to listen for http requests
 

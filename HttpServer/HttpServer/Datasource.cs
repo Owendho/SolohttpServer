@@ -8,6 +8,8 @@ using Microsoft.Data.SqlClient;
 using System.IO;
 using System.Linq;
 using System.Text.RegularExpressions;
+using System.Text.Json;
+
 
 namespace HttpServer
 {
@@ -62,19 +64,20 @@ namespace HttpServer
         public string readAppsettings()
         {
             string fileText = File.ReadAllText("Appsettings.json"); //TODO: Implement relative path. Currently searches SolohttpServer\HttpServer\HttpServer\bin\Debug\net8.0
-            string regexString = @"/([A-Z])\w+/g";
+            string connectionstring = " ";
 
-            Regex regex = new Regex(regexString);
+            Applicationsettings? applicationsettings = JsonSerializer.Deserialize<Applicationsettings>(fileText);
 
-            Match match = regex.Match(fileText);
+            if (applicationsettings == null)
+            {
+                Console.WriteLine("Missing database connectionstring");//Probrably throw an exception
+                throw new NullReferenceException();//Change to custom exception once created or make type non-nullable
+            }
+            else
+                connectionstring = applicationsettings.Connectionstring;
 
-            string connectionString = " ";
-            Console.WriteLine(match.Value);
 
-            //match.Value.Trim();
-
-            //return connectionString;
-            return match.Value;
+            return connectionstring;
         }
     }
 }

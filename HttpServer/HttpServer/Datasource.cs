@@ -71,7 +71,6 @@ namespace HttpServer
             if (applicationsettings == null)
             {
                 Console.WriteLine("Missing database connectionstring");//Probrably throw an exception
-                throw new NullReferenceException();//Change to custom exception once created or make type non-nullable
             }
             else
                 connectionstring = applicationsettings.Connectionstring;
